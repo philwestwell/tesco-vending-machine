@@ -5,4 +5,9 @@ public class FiftyPence implements Coin {
 	public int valueInPence() {
 		return 50;
 	}
+
+	@Override
+	public CoinType getCoinType() {
+		return CoinType.FIFTY_PENCE;
+	}
 }
