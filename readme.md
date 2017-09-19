@@ -75,11 +75,11 @@ This outputs html reports to `target/pit-reports/YYYYMMDDHHMI`.
 * Update BDD features 
 * Add shortcomings in tests identified by PITest
 * Review responsibilities of classes and refactor as appropriate so that the code is easy to change. Design principles to consider
-..* Separate what changes from what stays the same
-..* Classes should be open for extension but closed for modification
-..* Classes should have only one reason to change
-..* Encapsulate what varies
-..* Depend on abstraction, not concrete classes
+   - Separate what changes from what stays the same
+   - Classes should be open for extension but closed for modification
+   - Classes should have only one reason to change
+   - Encapsulate what varies
+   - Depend on abstraction, not concrete classes
 * Add BDD tests
 * Run static code analysis tool
 * Incorporate as part of CI Build
