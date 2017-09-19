@@ -77,5 +77,5 @@ When developing this project, take care not to mock inadvertently the code you a
 * Run PITest mutation test tool to test the tests
 * Run static code analysis tool
 * Incorporate as part of CI Build
-* The CashBox sets up hardcoded values for the initial coin balances. Initial balance could be passed in to the constructor after retrieving from local storage
+* The CashManager sets up hardcoded values for the initial coin balances. Initial balance could be passed in to the constructor after retrieving from local storage
 * Deal with situation where insufficient coins to provide change - needs design 

@@ -11,9 +11,9 @@ import com.tesco.app.machine.money.OnePound;
 import com.tesco.app.machine.money.TenPence;
 import com.tesco.app.machine.money.TwentyPence;
 
-public class CashBoxTest {
+public class CashManagerTest {
 	CashTransaction cashTransaction;
-	private CashBox cashBoxUnderTest = null;
+	private CashManager cashBoxUnderTest = null;
 
 	@Before
 	public void initialize() {
@@ -27,19 +27,19 @@ public class CashBoxTest {
 
 	@Test
 	public void cashBoxCanBeConstructed() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		assertNotNull(cashBoxUnderTest);
 	}
 
 	@Test
 	public void addingOneCoinUpdatesTheBalance() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
 		assertEquals(10, cashTransaction.getBalance());
 	}
 	@Test
 	public void addingMultipleCoinsUpdatesTheBalance() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
 		cashBoxUnderTest.addCoin(new TwentyPence());
 		cashBoxUnderTest.addCoin(new FiftyPence());
@@ -51,8 +51,8 @@ public class CashBoxTest {
 		assertEquals(320, cashTransaction.getBalance());
 	}
 	@Test
-	public void addingCoinsUpdatesTheCoinCountInTheCashBox() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+	public void addingCoinsUpdatesTheCoinCountInTheCashManager() {
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		//before count
 		assertEquals(100, cashBoxUnderTest.get10pCoinCount());
 		cashBoxUnderTest.addCoin(new TenPence());
@@ -73,7 +73,7 @@ public class CashBoxTest {
 	}
 	@Test
 	public void returnBalance_SingleCoin() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
 		assertEquals(10, cashTransaction.getBalance());
 		assertEquals(101, cashBoxUnderTest.get10pCoinCount());
@@ -83,7 +83,7 @@ public class CashBoxTest {
 	}
 	@Test
 	public void returnBalance_MultipleCoins_SameCoinsReturned() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
 		cashBoxUnderTest.addCoin(new TwentyPence());
 		cashBoxUnderTest.addCoin(new FiftyPence());
@@ -101,7 +101,7 @@ public class CashBoxTest {
 	}
 	@Test
 	public void returnBalance_MultipleCoins_DifferentCoinsReturned() {
-		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest = new CashManager(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
 		cashBoxUnderTest.addCoin(new TenPence());
 		cashBoxUnderTest.addCoin(new TenPence());

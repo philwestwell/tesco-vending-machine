@@ -3,14 +3,14 @@ package com.tesco.app.machine;
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.CoinType;
 
-public class CashBox {
+public class CashManager {
 	int countOf10pCoins = 0;
 	int countOf20pCoins = 0;
 	int countOf50pCoins = 0;
 	int countOf1PoundCoins = 0;
 	CashTransaction cashTransaction = null;
 
-	public CashBox(CashTransaction cashTransaction) {
+	public CashManager(CashTransaction cashTransaction) {
 		this.cashTransaction = cashTransaction;
 		// todo pass in the coin counts that are probably retrieved from persistent
 		// storage
