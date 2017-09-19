@@ -69,7 +69,7 @@ When developing this project, take care not to mock inadvertently the code you a
 4. The project includes the PITest mutation test tool, a very powerful approach to assessing the effectiveness of the unit tests (refer http://pitest.org), notably more effective than simple code coverage.
 PITest can be run directly from the commandline
  	`mvn org.pitest:pitest-maven:mutationCoverage`
-This outputs html reports to target/pit-reports/YYYYMMDDHHMI.
+This outputs html reports to `target/pit-reports/YYYYMMDDHHMI`.
 
 # todo
 * Update BDD features 
