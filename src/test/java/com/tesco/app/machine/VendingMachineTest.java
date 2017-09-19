@@ -35,4 +35,12 @@ public class VendingMachineTest {
     		vendingMachineUnderTest.insertCoin(nextCoin);
     		verify(cashBoxMock).addCoin(nextCoin);
     }
+    @Test
+    public void coinsAreReturned_SingleCoin() {
+    		vendingMachineUnderTest = new VendingMachine(cashBoxMock);
+    		Coin nextCoin = new TenPence();
+    		vendingMachineUnderTest.insertCoin(nextCoin);
+    		vendingMachineUnderTest.returnCoins();
+    		verify(cashBoxMock).returnBalance();
+    }
 }

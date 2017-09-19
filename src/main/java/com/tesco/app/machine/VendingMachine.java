@@ -24,11 +24,13 @@ public class VendingMachine {
 	
 	public void setOff() {
 	}
-
 	public void insertCoin(Coin nextCoin) {
 		//todo establish whether the coin slot hardware goes to a "auto coin return" state when off, or whether this is just a logical "off" state
-		//for now, the safest course of action is to reject coins if the machine is off
+		//todo for now, the safest course of action is to reject coins if the machine is off
 		
 		this.cashBox.addCoin(nextCoin);
+	}
+	public void returnCoins() {
+		this.cashBox.returnBalance();
 	}
 }

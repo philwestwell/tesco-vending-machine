@@ -17,25 +17,25 @@ A private Github repo to model a vending machine's state during operation.
 
 3. The machine responds to the following messages
 
-* insertCoin
+* `insertCoin`
 
 takes a parameter of single coin (see above for valid coins) and updates the balance
 
-* returnCoins
+* `returnCoins`
 
 returns coins representing the current balance (does not need to be the same coins)
 
-* purchaseItem
+* `purchaseItem`
 
 takes a parameter of a single item (see above for valid items) and returns coins representing the unused balance
 
-* turnOn
+* `turnOn`
 
 loads the current persisted state for the number of coins and products of each type
 
 accepts new transactions    
  
-* turnOff
+* `turnOff`
 
 no longer accepts requests
  
@@ -77,3 +77,4 @@ When developing this project, take care not to mock inadvertently the code you a
 * Run PITest mutation test tool to test the tests
 * Run static code analysis tool
 * Incorporate as part of CI Build
+* The CashBox sets up hardcoded values for the initial coin balances. Initial balance could be passed in to the constructor after retrieving from local storage 
