@@ -61,12 +61,13 @@ When developing this project, take care not to mock inadvertently the code you a
 3. Some sample BDD Cucumber tests are included. If this code was being developed as an agile project, the BDD tests for the next show and tell would be added at the start of the sprint. 
 
 #todo
-1. Develop product compartment
-2. Check Maven build
-3. Review responsibilities of classes and refactor as appropriate so that the code is easy to change. Design principles to consider
-* Separate what changes from what stays the same
-* Classes should be open for extension but closed for modification
-4. Add BDD tests
-5. Run PITest mutation test tool to test the tests
-6. Run static code analysis tool
-7. Incorporate as part of CI Build
+* Develop product compartment
+* Update BDD features 
+* Check Maven build
+* Review responsibilities of classes and refactor as appropriate so that the code is easy to change. Design principles to consider
+...* Separate what changes from what stays the same
+...* Classes should be open for extension but closed for modification
+* Add BDD tests
+* Run PITest mutation test tool to test the tests
+* Run static code analysis tool
+* Incorporate as part of CI Build
