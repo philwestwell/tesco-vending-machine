@@ -7,9 +7,4 @@ Scenario: Power machine on
     When I power it on
     Then The machine sets itself to the initial state
     And The machine notifies the user that it is ready to start vending
-Scenario: Power machine off
-    Given The machine is powered on
-    When I power it off
-    Then The machine sets itself to the off state
-    And The machine no longer accepts messages
 	
