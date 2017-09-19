@@ -67,11 +67,8 @@ When developing this project, take care not to mock inadvertently the code you a
 3. Some sample BDD Cucumber tests are included. If this code was being developed as an agile project, the BDD tests for the next show and tell would be added at the start of the sprint. 
 
 4. The project includes the PITest mutation test tool, a very powerful approach to assessing the effectiveness of the unit tests (refer http://pitest.org), notably more effective than simple code coverage.
-
 PITest can be run directly from the commandline
-
- 	mvn org.pitest:pitest-maven:mutationCoverage
-
+ 	`mvn org.pitest:pitest-maven:mutationCoverage`
 This outputs html reports to target/pit-reports/YYYYMMDDHHMI.
 
 # todo
