@@ -1,6 +1,7 @@
 package com.tesco.app.machine;
 
 import com.tesco.app.machine.product.Product;
+import com.tesco.app.machine.product.ProductType;
 
 public class ProductCompartment {
 	private int countOfProductA = 0;
@@ -12,8 +13,26 @@ public class ProductCompartment {
 		this.countOfProductC = 20;
 	}
 	public void dispenseProduct(Product aProduct) {
-		// TODO Auto-generated method stub
-		
+		switch(aProduct.getProductType()) {
+		case PRODUCT_A:
+			this.countOfProductA -= 1;
+			break;
+		case PRODUCT_B:
+			this.countOfProductB -= 1;
+			break;
+		case PRODUCT_C:
+			this.countOfProductC -= 1;
+			break;
+		}
+	}
+	public int getProductACount() {
+		return this.countOfProductA;
+	}
+	public int getProductBCount() {
+		return this.countOfProductB;
+	}
+	public int getProductCCount() {
+		return this.countOfProductC;
 	}
 
 }

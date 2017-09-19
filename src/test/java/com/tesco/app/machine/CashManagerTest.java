@@ -5,6 +5,7 @@ import org.junit.*;
 import org.mockito.*;
 import static org.mockito.Mockito.*;
 
+import com.tesco.app.machine.exception.InsufficientFundsException;
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.FiftyPence;
 import com.tesco.app.machine.money.OnePound;
@@ -149,4 +150,12 @@ public class CashManagerTest {
 		assertTrue(cashManagerUnderTest.isCanAfford(new ProductB()));
 		assertTrue(cashManagerUnderTest.isCanAfford(new ProductC()));
 	}
+	@Test(expected=InsufficientFundsException.class) 
+	public void buyProductWithInsufficientFunds() throws InsufficientFundsException {
+		cashManagerUnderTest = new CashManager(cashTransaction);
+		cashManagerUnderTest.addCoin(new FiftyPence());
+		assertFalse(cashManagerUnderTest.isCanAfford(new ProductA()));
+		cashManagerUnderTest.buyProduct(new ProductA());
+	}
+	
 }

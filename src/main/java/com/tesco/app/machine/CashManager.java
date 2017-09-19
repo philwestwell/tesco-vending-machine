@@ -1,7 +1,9 @@
 package com.tesco.app.machine;
 
+import com.tesco.app.machine.exception.InsufficientFundsException;
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.CoinType;
+import com.tesco.app.machine.product.Product;
 import com.tesco.app.machine.product.ProductA;
 
 public class CashManager {
@@ -38,9 +40,11 @@ public class CashManager {
 			break;
 		}
 	}
+
 	public void returnBalance() {
-		int[] coinsToReturn = CoinChangeCalculator.calculateAvailableCoinsNeeded(this.cashTransaction.getBalance(), this.countOf10pCoins, this.countOf20pCoins, this.countOf50pCoins, this.countOf1PoundCoins);
-		//todo - go back to stakeholders to decide how to deal with insufficient coins
+		int[] coinsToReturn = CoinChangeCalculator.calculateAvailableCoinsNeeded(this.cashTransaction.getBalance(),
+				this.countOf10pCoins, this.countOf20pCoins, this.countOf50pCoins, this.countOf1PoundCoins);
+		// todo - go back to stakeholders to decide how to deal with insufficient coins
 		if (coinsToReturn[0] > -1) {
 			this.countOf10pCoins -= coinsToReturn[0];
 			this.countOf20pCoins -= coinsToReturn[1];
@@ -49,20 +53,32 @@ public class CashManager {
 		}
 		this.cashTransaction.startNewTransaction();
 	}
+
 	public int get10pCoinCount() {
 		return this.countOf10pCoins;
 	}
+
 	public int get20pCoinCount() {
 		return this.countOf20pCoins;
 	}
+
 	public int get50pCoinCount() {
 		return this.countOf50pCoins;
 	}
+
 	public int get1PoundCoinCount() {
 		return this.countOf1PoundCoins;
 	}
 
 	public boolean isCanAfford(ItemWithCashValue item) {
 		return this.cashTransaction.getBalance() >= item.getCostInPence();
+	}
+
+	public void buyProduct(ItemWithCashValue item) throws InsufficientFundsException {
+		if (isCanAfford(item)) {
+			this.cashTransaction.withdrawAmount(item.getCostInPence());
+		} else {
+			throw new InsufficientFundsException();
+		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.tesco.app.machine;
 
+import javax.naming.InsufficientResourcesException;
+
+import com.tesco.app.machine.exception.InsufficientFundsException;
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.product.Product;
 import com.tesco.app.machine.product.ProductType;
@@ -46,7 +49,11 @@ public class VendingMachine {
 		this.cashManager.returnBalance();
 	}
 
-	public void buyProduct(Product aProduct) {
-		this.productCompartment.dispenseProduct(aProduct);
+	public void buyProduct(Product aProduct) throws InsufficientFundsException {
+		if (this.cashManager.isCanAfford(aProduct)) {
+			this.cashManager.buyProduct(aProduct);
+			this.productCompartment.dispenseProduct(aProduct);
+			this.cashManager.returnBalance();
+		}
 	}
 }

@@ -80,3 +80,4 @@ When developing this project, take care not to mock inadvertently the code you a
 * Incorporate as part of CI Build
 * The CashManager sets up hardcoded values for the initial coin balances. Initial balance could be passed in to the constructor after retrieving from local storage
 * Deal with situation where insufficient coins to provide change - needs design 
+* Think through how the actor is going to interact with the vening machine in terms of feedback e.g. successful transaction, error transaction (insufficient balance)

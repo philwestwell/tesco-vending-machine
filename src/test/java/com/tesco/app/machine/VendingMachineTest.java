@@ -6,9 +6,12 @@ import static org.mockito.Mockito.*;
 
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.FiftyPence;
+import com.tesco.app.machine.money.OnePound;
 import com.tesco.app.machine.money.TenPence;
+import com.tesco.app.machine.money.TwentyPence;
 import com.tesco.app.machine.product.Product;
 import com.tesco.app.machine.product.ProductA;
+import com.tesco.app.machine.product.ProductC;
 import com.tesco.app.machine.product.ProductType;
 public class VendingMachineTest {
 	@Mock
@@ -50,12 +53,37 @@ public class VendingMachineTest {
     		verify(cashManagerMock).returnBalance();
     }
     @Test
-    public void productCanBeDispensed_ExactMoney() {
-    		vendingMachineUnderTest = new VendingMachine(cashManagerMock, productCompartmentMock);    		
+    public void productCanBeDispensed_ExactMoney() throws Exception {
+    		vendingMachineUnderTest = new VendingMachine(new CashManager(new CashTransaction()), productCompartmentMock);    		
     		vendingMachineUnderTest.insertCoin(new TenPence());
     		vendingMachineUnderTest.insertCoin(new FiftyPence());
     		Product nextProduct = new ProductA();
     		vendingMachineUnderTest.buyProduct(nextProduct);    		
     		verify(productCompartmentMock).dispenseProduct(nextProduct);
+    }
+    //todo - requires greater combination of tests
+    @Test
+    public void productCanBeDispensed_WithChange() throws Exception {
+    		CashTransaction aCashTransaction = new CashTransaction();
+    		CashManager aCashManager = new CashManager(aCashTransaction);
+    		ProductCompartment aProductCompartment = new ProductCompartment();
+    		vendingMachineUnderTest = new VendingMachine(aCashManager, aProductCompartment);    		
+    		vendingMachineUnderTest.insertCoin(new OnePound());
+    		vendingMachineUnderTest.insertCoin(new OnePound());
+    		vendingMachineUnderTest.insertCoin(new TwentyPence());
+    		assertEquals(220, aCashTransaction.getBalance());
+    		assertEquals(100, aCashManager.get10pCoinCount());
+    		assertEquals(101, aCashManager.get20pCoinCount());
+    		assertEquals(100, aCashManager.get50pCoinCount());
+    		assertEquals(102, aCashManager.get1PoundCoinCount());
+    		assertEquals(20, aProductCompartment.getProductCCount());
+    		Product nextProduct = new ProductC();
+    		vendingMachineUnderTest.buyProduct(nextProduct);    		
+    		assertEquals(0, aCashTransaction.getBalance());
+    		assertEquals(100, aCashManager.get10pCoinCount());
+    		assertEquals(101, aCashManager.get20pCoinCount());
+    		assertEquals(99, aCashManager.get50pCoinCount());
+    		assertEquals(102, aCashManager.get1PoundCoinCount());
+    		assertEquals(19, aProductCompartment.getProductCCount());
     }
 }

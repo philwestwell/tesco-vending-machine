@@ -14,4 +14,8 @@ public class CashTransaction {
 	public void startNewTransaction() {
 		this.totalValueInPence = 0;
 	}
+
+	public void withdrawAmount(int costInPence) {
+		this.totalValueInPence -= costInPence;
+	}
 }
