@@ -72,10 +72,48 @@ public class CashBoxTest {
 		assertEquals(101, cashBoxUnderTest.get1PoundCoinCount());
 	}
 	@Test
-	@Ignore
-	public void returnBalance_SimpleCase() {
+	public void returnBalance_SingleCoin() {
 		cashBoxUnderTest = new CashBox(cashTransaction);
 		cashBoxUnderTest.addCoin(new TenPence());
-		assertEquals(320, cashTransaction.getBalance());
+		assertEquals(10, cashTransaction.getBalance());
+		assertEquals(101, cashBoxUnderTest.get10pCoinCount());
+		cashBoxUnderTest.returnBalance();
+		assertEquals(0, cashTransaction.getBalance());
+		assertEquals(100, cashBoxUnderTest.get10pCoinCount());
+	}
+	@Test
+	public void returnBalance_MultipleCoins_SameCoinsReturned() {
+		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new TwentyPence());
+		cashBoxUnderTest.addCoin(new FiftyPence());
+		cashBoxUnderTest.addCoin(new OnePound());
+		assertEquals(180, cashTransaction.getBalance());
+		assertEquals(101, cashBoxUnderTest.get10pCoinCount());
+		assertEquals(101, cashBoxUnderTest.get20pCoinCount());
+		assertEquals(101, cashBoxUnderTest.get50pCoinCount());
+		assertEquals(101, cashBoxUnderTest.get1PoundCoinCount());
+		cashBoxUnderTest.returnBalance();
+		assertEquals(100, cashBoxUnderTest.get10pCoinCount());
+		assertEquals(100, cashBoxUnderTest.get20pCoinCount());
+		assertEquals(100, cashBoxUnderTest.get50pCoinCount());
+		assertEquals(100, cashBoxUnderTest.get1PoundCoinCount());
+	}
+	@Test
+	public void returnBalance_MultipleCoins_DifferentCoinsReturned() {
+		cashBoxUnderTest = new CashBox(cashTransaction);
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new TenPence());
+		cashBoxUnderTest.addCoin(new FiftyPence());
+		assertEquals(100, cashTransaction.getBalance());
+		assertEquals(105, cashBoxUnderTest.get10pCoinCount());
+		assertEquals(101, cashBoxUnderTest.get50pCoinCount());
+		cashBoxUnderTest.returnBalance();
+		assertEquals(0, cashTransaction.getBalance());
+		assertEquals(105, cashBoxUnderTest.get10pCoinCount());
+		assertEquals(99, cashBoxUnderTest.get1PoundCoinCount());
 	}
 }

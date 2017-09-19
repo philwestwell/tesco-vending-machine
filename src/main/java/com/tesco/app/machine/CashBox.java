@@ -1,5 +1,7 @@
 package com.tesco.app.machine;
 
+import static org.junit.Assert.assertEquals;
+
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.CoinType;
 
@@ -39,7 +41,15 @@ public class CashBox {
 	}
 
 	public void returnBalance() {
-		// TODO Auto-generated method stub
+		int[] coinsToReturn = CoinChangeCalculator.calculateAvailableCoinsNeeded(this.cashTransaction.getBalance(), this.countOf10pCoins, this.countOf20pCoins, this.countOf50pCoins, this.countOf1PoundCoins);
+		//todo - go back to stakeholders to decide how to deal with insufficient coins
+		if (coinsToReturn[0] > -1) {
+			this.countOf10pCoins -= coinsToReturn[0];
+			this.countOf20pCoins -= coinsToReturn[1];
+			this.countOf50pCoins -= coinsToReturn[2];
+			this.countOf1PoundCoins -= coinsToReturn[3];
+		}
+		this.cashTransaction.startNewTransaction();
 	}
 
 	public int get10pCoinCount() {
