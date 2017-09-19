@@ -11,12 +11,12 @@ import com.tesco.app.machine.product.ProductType;
  * - This is the system class, so it orchestrates the actions on the machine components 
  */
 public class VendingMachine {
-	private CashManager cashBox = null;
+	private CashManager cashManager = null;
 	private boolean isOn = false;
 	private ProductCompartment productCompartment = null;
-	public VendingMachine(CashManager cashBox, ProductCompartment productCompartment) {
+	public VendingMachine(CashManager cashManager, ProductCompartment productCompartment) {
 		super();
-		this.cashBox = cashBox;
+		this.cashManager = cashManager;
 		this.productCompartment = productCompartment;
 		this.isOn = true;
 	}
@@ -39,11 +39,11 @@ public class VendingMachine {
 		if (!isOn()) {
 			//todo - work out how to reject an inserted coin
 		} else {
-			this.cashBox.addCoin(aCoin);
+			this.cashManager.addCoin(aCoin);
 		}
 	}
 	public void returnCoins() {
-		this.cashBox.returnBalance();
+		this.cashManager.returnBalance();
 	}
 
 	public void buyProduct(Product aProduct) {

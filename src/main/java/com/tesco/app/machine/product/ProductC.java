@@ -3,7 +3,7 @@ package com.tesco.app.machine.product;
 public class ProductC implements Product {
 
 	@Override
-	public int costInPence() {
+	public int getCostInPence() {
 		return 170;
 	}
 

@@ -2,6 +2,7 @@ package com.tesco.app.machine;
 
 import com.tesco.app.machine.money.Coin;
 import com.tesco.app.machine.money.CoinType;
+import com.tesco.app.machine.product.ProductA;
 
 public class CashManager {
 	int countOf10pCoins = 0;
@@ -59,5 +60,9 @@ public class CashManager {
 	}
 	public int get1PoundCoinCount() {
 		return this.countOf1PoundCoins;
+	}
+
+	public boolean isCanAfford(ItemWithCashValue item) {
+		return this.cashTransaction.getBalance() >= item.getCostInPence();
 	}
 }

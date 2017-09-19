@@ -12,7 +12,7 @@ import com.tesco.app.machine.product.ProductA;
 import com.tesco.app.machine.product.ProductType;
 public class VendingMachineTest {
 	@Mock
-	CashManager cashBoxMock;
+	CashManager cashManagerMock;
 	@Mock
 	ProductCompartment productCompartmentMock;
 	private 	VendingMachine vendingMachineUnderTest = null;
@@ -36,22 +36,22 @@ public class VendingMachineTest {
     }
     @Test
     public void tenPenceCoinCanBeInsertedAndIsPassedToCashManager() {
-    		vendingMachineUnderTest = new VendingMachine(cashBoxMock, null);
+    		vendingMachineUnderTest = new VendingMachine(cashManagerMock, null);
     		Coin nextCoin = new TenPence();
     		vendingMachineUnderTest.insertCoin(nextCoin);
-    		verify(cashBoxMock).addCoin(nextCoin);
+    		verify(cashManagerMock).addCoin(nextCoin);
     }
     @Test
     public void coinsAreReturned_SingleCoin() {
-    		vendingMachineUnderTest = new VendingMachine(cashBoxMock, null);
+    		vendingMachineUnderTest = new VendingMachine(cashManagerMock, null);
     		Coin nextCoin = new TenPence();
     		vendingMachineUnderTest.insertCoin(nextCoin);
     		vendingMachineUnderTest.returnCoins();
-    		verify(cashBoxMock).returnBalance();
+    		verify(cashManagerMock).returnBalance();
     }
     @Test
     public void productCanBeDispensed_ExactMoney() {
-    		vendingMachineUnderTest = new VendingMachine(cashBoxMock, productCompartmentMock);    		
+    		vendingMachineUnderTest = new VendingMachine(cashManagerMock, productCompartmentMock);    		
     		vendingMachineUnderTest.insertCoin(new TenPence());
     		vendingMachineUnderTest.insertCoin(new FiftyPence());
     		Product nextProduct = new ProductA();
